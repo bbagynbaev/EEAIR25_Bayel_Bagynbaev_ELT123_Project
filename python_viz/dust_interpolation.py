@@ -72,3 +72,16 @@ for i, (x, y) in enumerate(node_coords):
         fontweight='bold',
         bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="gray", alpha=0.8)
     )
+
+ax.set_title('Dust Dispersion Mapper: Карта распространения PM2.5', fontsize=13, fontweight='bold')
+ax.set_xlabel('Координата X (метры)', fontsize=10)
+ax.set_ylabel('Координата Y (метры)', fontsize=10)
+ax.set_xlim(x_min, x_max)
+ax.set_ylim(y_min, y_max)
+ax.grid(True, linestyle=':', alpha=0.5)
+ax.legend(loc='upper right')
+
+plt.tight_layout()
+
+plt.savefig('dust_dispersion_map.png', dpi=300)
+plt.show()

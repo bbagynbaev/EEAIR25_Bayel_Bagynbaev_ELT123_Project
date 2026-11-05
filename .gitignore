@@ -1,1 +1,37 @@
-/.venv
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# === Jupyter Notebooks ===
+.ipynb_checkpoints
+
+# === C++ / Arduino / PlatformIO ===
+.pio/
+.vscode/
+.idea/
+*.hex
+*.elf
+*.bin
+build/
+Output/
+*.ino.cpp
+*.ino.hex
+
+# === OS & System files ===
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+
+# === CAD / 3D Temp Files ===
+*.lock

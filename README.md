@@ -14,7 +14,7 @@ This project addresses the research question:
 
 ---
 
-## 🛠 Hardware & System Architecture
+## Hardware & System Architecture
 
 The system consists of **3 Wireless Sensor Nodes** and **1 Central Hub**:
 

@@ -23,6 +23,42 @@ The system consists of **3 Wireless Sensor Nodes** and **1 Central Hub**:
 - **Data Hub (x1):** ESP32 connected to PC/laptop via USB Serial stream.
 - **Power:** 18650 Li-ion batteries with TP4056 charging modules.
 
+### Wiring Diagram (Sensor Node)
+
+```mermaid
+graph LR
+    subgraph Power System
+        B((18650 Battery\n3.7V)) -->|BAT+, BAT-| TP[TP4056\nCharger]
+        TP -->|OUT+, OUT-| MT[MT3608 Step-Up\nBoost to 5.0V]
+    end
+
+    subgraph Controller
+        ESP[ESP32 Dev Module]
+    end
+
+    subgraph Sensor
+        SDS[SDS011 Dust Sensor]
+    end
+
+    %% Power Connections
+    MT -->|5V| ESP(VIN / 5V)
+    MT -->|GND| ESP(GND)
+    MT -->|5V| SDS(5V pin)
+    MT -->|GND| SDS(GND pin)
+
+    %% Data Connections (UART)
+    SDS -->|TXD| ESP(GPIO 16 / RX2)
+    ESP -->|GPIO 17 / TX2| SDS(RXD)
+    
+    classDef power fill:#f9d0c4,stroke:#333,stroke-width:2px;
+    classDef logic fill:#d4e6f1,stroke:#333,stroke-width:2px;
+    classDef sensor fill:#d5f5e3,stroke:#333,stroke-width:2px;
+    
+    class B,TP,MT power;
+    class ESP logic;
+    class SDS sensor;
+```
+
 ## Repository Structure
 - `src/sensor_node/`: Firmware for the 3 sensing nodes (reads SDS011 UART and sends via ESP-NOW).
 - `src/receiver_hub/`: Firmware for the central data collection hub.
